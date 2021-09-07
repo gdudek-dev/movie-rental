@@ -34,6 +34,12 @@ public class Customer extends AbstractTimestamp implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Column(name="username",unique = true)
+    private String username;
+
+    @Column(name="password")
+    private String password;
+
     @Override
     protected void onCreate() {
         super.onCreate();
