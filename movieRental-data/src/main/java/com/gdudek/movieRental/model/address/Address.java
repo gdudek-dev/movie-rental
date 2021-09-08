@@ -40,7 +40,7 @@ public class Address extends AbstractTimestamp implements Serializable {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "address",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "address")
     private Set<Customer> customers = new HashSet<>();
 
     @OneToMany(mappedBy = "address")

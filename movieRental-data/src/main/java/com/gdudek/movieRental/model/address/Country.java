@@ -23,6 +23,6 @@ public class Country extends AbstractTimestamp implements Serializable {
     @Column(unique=true)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "country",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country")
     private Set<City> cities = new HashSet<>();
 }

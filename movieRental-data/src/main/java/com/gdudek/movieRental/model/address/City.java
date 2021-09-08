@@ -22,7 +22,7 @@ public class City extends AbstractTimestamp implements Serializable {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "city",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "city")
     private Set<Address> addresses= new HashSet<>();
 
     @ManyToOne
