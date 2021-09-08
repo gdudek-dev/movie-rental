@@ -1,6 +1,6 @@
-package com.gdudek.movieRental.repository;
+package com.gdudek.movieRental.repository.address;
 
-import com.gdudek.movieRental.model.City;
+import com.gdudek.movieRental.model.address.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

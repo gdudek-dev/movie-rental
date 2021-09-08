@@ -1,5 +1,7 @@
-package com.gdudek.movieRental.model;
+package com.gdudek.movieRental.model.customer;
 
+import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.address.Address;
 import lombok.Getter;
 import lombok.Setter;
 

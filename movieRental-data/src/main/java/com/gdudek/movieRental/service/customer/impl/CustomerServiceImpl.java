@@ -1,4 +1,4 @@
-package com.gdudek.movieRental.service.impl;
+package com.gdudek.movieRental.service.customer.impl;
 
 import org.springframework.stereotype.Service;
 

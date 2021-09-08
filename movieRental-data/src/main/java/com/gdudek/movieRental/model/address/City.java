@@ -1,5 +1,6 @@
-package com.gdudek.movieRental.model;
+package com.gdudek.movieRental.model.address;
 
+import com.gdudek.movieRental.model.AbstractTimestamp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 @Table(name="cities")
 @Getter
 @Setter
-public class City extends  AbstractTimestamp implements Serializable {
+public class City extends AbstractTimestamp implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
