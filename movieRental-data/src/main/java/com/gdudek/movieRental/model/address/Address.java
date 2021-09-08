@@ -1,6 +1,8 @@
 package com.gdudek.movieRental.model.address;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.business.Staff;
+import com.gdudek.movieRental.model.business.Store;
 import com.gdudek.movieRental.model.customer.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,5 +42,11 @@ public class Address extends AbstractTimestamp implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "address",fetch = FetchType.LAZY)
     private Set<Customer> customers = new HashSet<>();
+
+    @OneToMany(mappedBy = "address")
+    private Set<Staff>staff = new HashSet<>();
+
+    @OneToMany(mappedBy = "address")
+    private Set<Store>stores = new HashSet<>();
 
 }

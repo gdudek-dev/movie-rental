@@ -1,6 +1,9 @@
 package com.gdudek.movieRental.model.business;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.address.Address;
+import com.gdudek.movieRental.model.customer.Customer;
+import com.gdudek.movieRental.model.inventory.Inventory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,5 +29,17 @@ public class Store extends AbstractTimestamp {
     @ManyToOne
     @JoinColumn(name="manager_id")
     private Staff manager;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @OneToMany(mappedBy = "store")
+    private Set<Customer> customers = new HashSet<>();
+
+    @OneToMany(mappedBy = "store")
+    private Set<Inventory>inventories = new HashSet<>();
+
+
 
 }

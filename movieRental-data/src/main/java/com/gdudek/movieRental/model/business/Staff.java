@@ -1,6 +1,7 @@
 package com.gdudek.movieRental.model.business;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.address.Address;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,4 +48,8 @@ public class Staff extends AbstractTimestamp {
 
     @OneToOne(mappedBy = "staff")
     private Rental rental;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

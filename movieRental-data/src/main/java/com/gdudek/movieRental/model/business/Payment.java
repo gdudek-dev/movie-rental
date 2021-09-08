@@ -1,6 +1,7 @@
 package com.gdudek.movieRental.model.business;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.customer.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,4 +34,8 @@ public class Payment extends AbstractTimestamp {
     @ManyToOne
     @JoinColumn(name = "rental_id")
     private Rental rental;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

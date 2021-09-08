@@ -2,12 +2,17 @@ package com.gdudek.movieRental.model.customer;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
 import com.gdudek.movieRental.model.address.Address;
+import com.gdudek.movieRental.model.business.Payment;
+import com.gdudek.movieRental.model.business.Rental;
+import com.gdudek.movieRental.model.business.Store;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="customers")
@@ -41,6 +46,17 @@ public class Customer extends AbstractTimestamp implements Serializable {
 
     @Column(name="password")
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Payment> payments = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Rental> rentals = new HashSet<>();
+
 
     @Override
     protected void onCreate() {
