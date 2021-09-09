@@ -24,11 +24,8 @@ public class Address extends AbstractTimestamp implements Serializable {
     @Column(nullable = false,updatable = false)
     private Long id;
 
-    @Column(name = "adress_1")
-    private String address_1;
-
-    @Column(name = "adress_2")
-    private String address_2;
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "postal_code")
     private String postalCode;

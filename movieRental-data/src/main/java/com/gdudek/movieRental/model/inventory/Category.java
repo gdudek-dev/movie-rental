@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 @Getter
 @Setter
-public class Category extends AbstractTimestamp {
+public class Category extends AbstractTimestamp implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

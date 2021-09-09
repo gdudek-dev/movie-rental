@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "payments")
 @Getter
 @Setter
-public class Payment extends AbstractTimestamp {
+public class Payment extends AbstractTimestamp implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +39,10 @@ public class Payment extends AbstractTimestamp {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @Override
+    protected void onCreate() {
+        super.onCreate();
+        paymentDate=LocalDateTime.now();
+    }
 }

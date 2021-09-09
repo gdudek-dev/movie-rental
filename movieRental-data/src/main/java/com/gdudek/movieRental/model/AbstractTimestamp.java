@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public abstract class AbstractTimestamp {
 
 
-    @Column(name = "updated", nullable = false)
+    @Column(name = "updated")
     private LocalDateTime updated;
 
     @PrePersist

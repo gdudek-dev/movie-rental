@@ -6,17 +6,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="film")
+@Table(name="films")
 @Getter
 @Setter
-public class Film extends AbstractTimestamp {
+public class Film extends AbstractTimestamp implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +33,7 @@ public class Film extends AbstractTimestamp {
     private String description;
 
     @Column(name = "release_date")
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     @Column(name = "language")
     private String language;
@@ -45,7 +47,7 @@ public class Film extends AbstractTimestamp {
     @Column(name="replacement_cost",precision=10, scale=2)
     private BigDecimal replacementCost;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "rating")
     private MovieRating rating;
 

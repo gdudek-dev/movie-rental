@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Table(name = "rental")
 @Getter
 @Setter
-public class Rental extends AbstractTimestamp {
+public class Rental extends AbstractTimestamp implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +43,11 @@ public class Rental extends AbstractTimestamp {
     @ManyToOne
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
+
+    @Override
+    protected void onCreate() {
+        super.onCreate();
+        rentalDate=LocalDateTime.now();
+        returnDate=LocalDateTime.now().plusDays(5);
+    }
 }

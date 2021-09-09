@@ -34,7 +34,7 @@ public class Customer extends AbstractTimestamp implements Serializable {
     @Column(name = "email",unique = true)
     private String email;
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created")
     private LocalDateTime created;
 
     @ManyToOne
