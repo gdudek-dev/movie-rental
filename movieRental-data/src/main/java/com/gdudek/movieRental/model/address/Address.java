@@ -25,7 +25,7 @@ public class Address extends AbstractTimestamp implements Serializable {
     private Long id;
 
     @Column(name = "address")
-    private String address;
+    private String mainAddress;
 
     @Column(name = "postal_code")
     private String postalCode;
