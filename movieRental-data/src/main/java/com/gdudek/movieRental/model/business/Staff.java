@@ -47,8 +47,8 @@ public class Staff extends AbstractTimestamp implements Serializable {
     @OneToMany(mappedBy = "staff")
     private Set<Payment> payments = new HashSet<>();
 
-    @OneToOne(mappedBy = "staff")
-    private Rental rental;
+    @OneToMany(mappedBy = "staff")
+    private Set<Rental> rentals = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "address_id")

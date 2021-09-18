@@ -29,7 +29,7 @@ public class Rental extends AbstractTimestamp implements Serializable {
     @Column(name = "return_date")
     private LocalDateTime returnDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
