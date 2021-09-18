@@ -44,15 +44,6 @@ public class AddressServiceImpl implements AddressService  {
        City city = address.getCity();
        Country country = city.getCountry();
 
-      if(addressRepository.existsByMainAddressAndPostalCode(address.getMainAddress(), address.getPostalCode())
-              &&cityRepository.existsByName(city.getName())
-              &&countryRepository.existsByName(country.getName())) {
-            throw new AlreadyExistException("Address "+address.getMainAddress()
-                    +" with postal code in selected country and city "
-                    +address.getPostalCode()
-                    +" already exist");
-        }
-
         if(!countryRepository.existsByName(country.getName()))
         {
             country.getCities().add(city);

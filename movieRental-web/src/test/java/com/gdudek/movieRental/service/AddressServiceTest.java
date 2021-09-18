@@ -151,18 +151,6 @@ class AddressServiceTest {
     }
 
     @Test
-    void shouldNotAddWhenAddressExist()
-    {
-        //given
-        when(addressRepository.existsByMainAddressAndPostalCode(address1.getMainAddress(),address1.getPostalCode())).thenReturn(true);
-        when(cityRepository.existsByName(city1.getName())).thenReturn(true);
-        when(countryRepository.existsByName(country.getName())).thenReturn(true);
-        //when
-        //then
-        assertThatThrownBy(()->addressService.save(address1)).isInstanceOf(AlreadyExistException.class);
-    }
-
-    @Test
     void shouldDeleteAddress() throws NotFoundException {
         // given
         when(addressRepository.existsById(1L)).thenReturn(true);
