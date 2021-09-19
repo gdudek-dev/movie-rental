@@ -1,6 +1,5 @@
 package com.gdudek.movieRental.service.address.impl;
 
-import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.address.City;
@@ -39,7 +38,7 @@ public class AddressServiceImpl implements AddressService  {
 
     @Override
     @Transactional
-    public Address save(Object addressToSave) throws AlreadyExistException {
+    public Address save(Object addressToSave) {
        Address address = (Address) addressToSave;
        City city = address.getCity();
        Country country = city.getCountry();
