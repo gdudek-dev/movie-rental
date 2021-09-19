@@ -1,4 +1,4 @@
-package com.gdudek.movieRental.repositories;
+package com.gdudek.movieRental.repository;
 
 import com.gdudek.movieRental.model.business.Payment;
 import com.gdudek.movieRental.model.business.Staff;
@@ -44,7 +44,7 @@ class StoreRepositoryTest {
         payment = new Payment();
         payment.setAmount(BigDecimal.valueOf(999.99));
         paymentRepository.saveAndFlush(payment);
-         store = new Store();
+        store = new Store();
         storeRepository.saveAndFlush(store);
 
         staff.setStore(store);
