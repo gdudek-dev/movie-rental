@@ -51,10 +51,6 @@ class StaffServiceTest {
 
         address = mock(Address.class);
         staff = mock(Staff.class);
-        staff.setId(1L);
-        staff.setUsername("myUsername");
-        staff.setFirstName("Tony");
-        staff.setLastName("Staff");
     }
 
     @Test

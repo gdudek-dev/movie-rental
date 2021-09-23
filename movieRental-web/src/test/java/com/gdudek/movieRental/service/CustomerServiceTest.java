@@ -48,13 +48,8 @@ class CustomerServiceTest {
     void setup()
     {
         MockitoAnnotations.initMocks(this);
-
         address = mock(Address.class);
         customer = mock(Customer.class);
-        customer.setId(1L);
-        customer.setUsername("myUsername");
-        customer.setFirstName("Tony");
-        customer.setLastName("Test");
     }
 
     @Test
