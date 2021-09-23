@@ -1,14 +1,15 @@
 package com.gdudek.movieRental.repository.business;
 
 
+import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Store;
 import com.gdudek.movieRental.utils.SalesByStores;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store,Long> {
@@ -20,6 +21,9 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
             "ORDER BY  pay.count DESC",nativeQuery = true)
     List<SalesByStores> findSalesMadeByStores();
 
+   Optional<List <Store>> findAllByManager_FirstNameAndManager_LastName(String firstName, String lastName);
+
+   boolean existsByAddress(Address address);
 
 }
 
