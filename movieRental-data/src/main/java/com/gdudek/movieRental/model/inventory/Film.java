@@ -9,8 +9,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Year;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,6 +44,9 @@ public class Film extends AbstractTimestamp implements Serializable {
 
     @Column(name="replacement_cost",precision=10, scale=2)
     private BigDecimal replacementCost;
+
+    @Column(name="rental_cost",precision=10, scale=2)
+    private BigDecimal rentalCost;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "rating")
