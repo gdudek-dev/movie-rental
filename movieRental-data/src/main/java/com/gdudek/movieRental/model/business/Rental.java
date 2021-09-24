@@ -9,8 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "rental")
@@ -33,8 +31,8 @@ public class Rental extends AbstractTimestamp implements Serializable {
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
-    @OneToMany(mappedBy = "rental")
-    private Set<Payment> payments = new HashSet<>();
+    @OneToOne(mappedBy = "rental")
+    private Payment payment;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
