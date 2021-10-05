@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  href="" th:href="@{/css/index.css}">
+    <title>Index</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <img src="" th:src="@{/images/index/logo.png}" alt="" class="logo-img">
+            <nav>
+                <a th:href="@{locations}" class="stores-locations">Find Us</a>
+            </nav>
+        </div>
+      </div>
+      <section class="hero">
+            <div class="main-text">
+                Rent your favourite movie
+            </div>
+            <div class="login">
+                <a th:href="@{login}">
+                    <button class="login-btn">Login</button>
+                </a>
+
+            </div>    
+      </section>
+</body>
+</html>
