@@ -1,0 +1,94 @@
+body {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  background-repeat: repeat;
+  font-family: 'Times New Roman';
+  background-size: 1920px 800px;
+  min-width: 1200px;
+}
+
+.navbar a .logo {
+  width: 5em;
+  height: 4em;
+  padding-left: 5em;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.row .column-left {
+  width: 40%;
+}
+
+.row .column-left nav .places-list {
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.row .column-left nav .places-list li {
+  margin-top: 3em;
+}
+
+.row .column-left nav .places-list li .list-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.row .column-left nav .places-list li .list-row .list-column-left {
+  width: 30%;
+}
+
+.row .column-left nav .places-list li .list-row .list-column-left a .store-img {
+  width: 10em;
+  height: 10em;
+}
+
+.row .column-left nav .places-list li .list-row .list-column-right {
+  width: 100%;
+  margin-left: 10%;
+}
+
+.row .column-left nav .places-list li .list-row .list-column-right .list-content {
+  color: white;
+}
+
+.row .column-right div {
+  padding-top: 8em;
+  padding-left: 15em;
+}
+
+.row .column-right div label {
+  display: block;
+  font-weight: bold;
+  color: white;
+  font-size: 5em;
+}
+
+.row .column-right div input {
+  margin-top: 1em;
+  font-size: 2em;
+  display: block;
+}
+
+.row .column-right button {
+  background-color: white;
+  margin-left: 13em;
+  margin-top: 1em;
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: .5em;
+  cursor: pointer;
+  width: 8em;
+  height: 2em;
+}
+
+.row .column-right button:hover {
+  background-color: black;
+  color: white;
+}

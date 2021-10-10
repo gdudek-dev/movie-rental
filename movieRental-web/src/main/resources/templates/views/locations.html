@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" th:href="@{/css/locations.css}">
+    <title>Locations</title>
+</head>
+<body>
+    <div class="navbar">
+        <a th:href="@{index}">
+            <img src="" th:src="@{/images/logo/logo.png}" alt="Logo" class="logo">
+        </a>
+    </div>
+        <div class="row">
+            <div class="column-left">
+                <nav>
+                    <ul class="places-list" >
+                        <li th:each="store: ${stores}">
+                            <div class="list-row">
+                                <div class="list-column-left">
+                                    <a href="#">
+                                        <img src="" th:src="@{/images/store/store.png}" alt="Store icon" class="store-img">
+                                    </a>
+                                </div>
+                                <div class="list-column-right">
+                                    <div class="list-content">
+                                        <h1 class="city-name" th:text="'City: '+${store.address.city.name}"></h1>
+                                        <p th:text="'Address: '+${store.address.mainAddress}"></p>
+                                        <p th:text="'Postal code: '+${store.address.postalCode}"></p>
+                                        <p th:text="'Phone: '+${store.address.phone}"></p>
+                                    </div>
+                                </div>                                                         
+                            </div>                        
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="column-right">
+                <form action="#" method="post" th:action="@{/locations}" >
+                    <div>
+                        <label >
+                            Search city
+                        </label>
+                        <input type="text" th:name="cityName">
+                    </div>
+                    <button>Search</button>
+                </form>
+            </div>
+        </div>
+</body>
+</html>
