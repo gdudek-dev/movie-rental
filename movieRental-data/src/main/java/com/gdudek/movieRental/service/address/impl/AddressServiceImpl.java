@@ -83,7 +83,7 @@ public class AddressServiceImpl implements AddressService  {
     @Override
     public List<Address> findAllAddressesByCityName(String name) throws NotFoundException {
         return addressRepository.findAllByCity_Name(name)
-                .orElseThrow(()->new NotFoundException("Addresses with name "+ name + " not found"));
+                .orElseThrow(()->new NotFoundException("Addresses with city name "+ name + " not found"));
     }
 
     @Override
