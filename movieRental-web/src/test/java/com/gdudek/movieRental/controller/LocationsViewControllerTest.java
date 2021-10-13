@@ -1,8 +1,6 @@
 package com.gdudek.movieRental.controller;
 
 
-import com.gdudek.movieRental.model.address.Address;
-import com.gdudek.movieRental.model.address.City;
 import com.gdudek.movieRental.model.business.Store;
 import com.gdudek.movieRental.service.business.impl.StoreServiceImpl;
 import org.hamcrest.Matchers;
@@ -37,17 +35,6 @@ public class LocationsViewControllerTest {
     @BeforeEach
     public void setUp() {
         stores = new ArrayList<>();
-        City city = new City();
-        city.setName("Test");
-        Address address = new Address();
-
-        address.setCity(city);
-
-        Store store = new Store();
-        store.setId(1L);
-        store.setAddress(address);
-
-        stores.add(store);
     }
 
     @Test
