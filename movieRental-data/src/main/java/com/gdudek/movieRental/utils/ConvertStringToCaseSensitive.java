@@ -5,6 +5,13 @@ public class ConvertStringToCaseSensitive {
     public static String getConvertedString(String stringToConvert)
     {
         String convertedString="";
-        return convertedString = stringToConvert.substring(0,1).toUpperCase()+stringToConvert.substring(1).toLowerCase();
+
+        String[] splitted = stringToConvert.split(" ");
+
+        for(int i =0 ; i< splitted.length;i++){
+            convertedString+=splitted[i].substring(0,1).toUpperCase()+splitted[i].substring(1).toLowerCase()+" ";
+        }
+
+        return convertedString;
     }
 }
