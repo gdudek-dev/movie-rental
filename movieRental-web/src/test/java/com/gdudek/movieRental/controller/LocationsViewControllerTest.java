@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@WebMvcTest(LocationsController.class)
-public class LocationsControllerTest {
+@WebMvcTest(LocationsViewController.class)
+public class LocationsViewControllerTest {
 
 
     @MockBean
