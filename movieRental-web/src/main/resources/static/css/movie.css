@@ -1,0 +1,94 @@
+body {
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+    background-repeat: repeat;
+    font-family: 'Times New Roman';
+    background-size: 1920px 800px;
+    min-width: 1200px;
+}
+
+.navbar .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    place-content: space-between;
+}
+
+.navbar .container a .logo {
+    width: 5em;
+    height: 4em;
+    padding-left: 5em;
+}
+
+.navbar .container nav {
+    padding-top: 1em;
+}
+
+.navbar .container nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-right: 5em;
+    cursor: pointer;
+}
+
+.container {
+    width: 95%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.container .image {
+    -ms-flex-preferred-size: 40%;
+    flex-basis: 40%;
+}
+
+.container .image img {
+    width: 30em;
+    height: 42em;
+}
+
+.container .movie-details {
+    margin-left: 2em;
+}
+
+.container .movie-details h1, .container .movie-details p {
+    color: white;
+}
+
+.container .movie-details h1 {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.container .movie-details .description {
+    display: block;
+    font-size: 1.5em;
+}
+
+.container .movie-details p {
+    font-size: 1.2em;
+}
+
+.container .movie-details .categories-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.container .movie-details .categories-list li {
+    color: white;
+    font-size: 1.2em;
+    text-align: left;
+    vertical-align: top;
+    display: inline-block;
+    width: 10%;
+}
+

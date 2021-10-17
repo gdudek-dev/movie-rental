@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" th:href="@{/css/movies.css}">
+    <title>Movies</title>
+</head>
+<body>
+    <div class="navbar">
+        <a th:href="@{../index}">
+            <img src="" th:src="@{/images/logo/logo.png}" alt="" class="logo">
+        </a>
+    </div>
+
+    <div class="title">
+        <h1>All Available Movies</h1>
+    </div>
+    <div class="row">
+        <div class="column-left">
+            <div class="movies-table">
+                <table>
+                    <tr>                  
+                        <th>Title</th>
+                        <th>Language</th>
+                        <th>Category</th>
+                        <th>Rating</th>
+                    </tr>
+                    <tr th:each="film: ${movies}">
+                        <td>
+                            <a th:href="@{movies+'/'+movie+'?title='+ ${film.title}}" th:text="${film.title}"></a>
+
+                        </td>
+                        <td th:text="${film.language}"></td>
+                        <td th:text="${film.getCategories().stream().findFirst().get().name}"></td>
+                        <td th:text="${film.rating}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="column-right">
+            <form action="#" method="post"  th:action="@{/browse/movies}">
+                <label for="filters">Select filter:</label>
+                <select  th:name="filter" name="filters" id="filters">
+                    <option  th:value="'Title'" th:text="Title"></option>
+                    <option  th:value="'Language'" th:text="Language"></option>
+                    <option  th:value="'Category'" th:text="Category"></option>
+                </select>
+                <input type="text" th:name="filterValue">
+                <input class="input-submit" type="submit" value="Search">
+              </form>
+        </div>
+    </div>
+</body>
+</html>

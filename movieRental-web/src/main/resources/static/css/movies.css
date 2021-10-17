@@ -1,0 +1,100 @@
+body {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  background-repeat: repeat;
+  font-family: 'Times New Roman';
+  background-size: 1920px 800px;
+  min-width: 1200px;
+}
+
+.navbar a .logo {
+  width: 5em;
+  height: 4em;
+  padding-left: 5em;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.title h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.row .column-left {
+  margin-top: 1em;
+  width: 50%;
+  max-height: 480px;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.row .column-left .movies-table table {
+  width: 95%;
+  border-collapse: separate;
+  border: 1px solid white;
+}
+
+.row .column-left .movies-table table tr th {
+  border: 1px solid white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: black;
+}
+
+.row .column-left .movies-table table tr th, .row .column-left .movies-table table tr td, .row .column-left .movies-table table tr a {
+  padding: 1em;
+  color: white;
+  font-size: 1.3em;
+  white-space: nowrap;
+}
+
+.row .column-left .movies-table table tr a {
+  font-weight: bold;
+}
+
+.row .column-right {
+  margin-left: 10em;
+  margin-top: 2em;
+  width: 50%;
+}
+
+.row .column-right label {
+  font-weight: bold;
+  color: white;
+  font-size: 2.7em;
+}
+
+.row .column-right select {
+  font-size: 2em;
+}
+
+.row .column-right input {
+  margin-top: 1em;
+  display: block;
+  font-size: 2em;
+}
+
+.row .column-right .input-submit {
+  border-radius: .5em;
+  width: 10em;
+  font-weight: bold;
+  cursor: pointer;
+}

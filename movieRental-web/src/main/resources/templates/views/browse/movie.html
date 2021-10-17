@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" th:href="@{/css/movie.css}">
+    <title>Movie</title>
+</head>
+<body>
+<div class="navbar">
+    <div class="container">
+        <a th:href="@{../../index}">
+            <img th:src="@{/images/logo/logo.png}" alt="" class="logo">
+        </a>
+        <nav>
+            <a th:href="@{../movies}" class="stores-places">All Movies</a>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="image">
+        <img th:src="@{/images/poster/poster.png}" alt="Poster">
+    </div>
+    <div class="movie-details" th:object="${film}">
+        <h1 th:text="${film.title}"></h1>
+        <p class="description" th:text="${film.description}">
+        </p>
+        <p th:text="${'Release Date: '+film.releaseDate}"></p>
+        <p th:text="${'Language: '+film.language}"></p>
+        <p th:text="${'Length: '+film.length+' min'}"></p>
+        <p th:text="${'Rating: '+film.rating}"></p>
+        <ul class="categories-list">
+            <li>Categories:</li>
+            <li th:each="category:${film.getCategories()}"  th:text="${category.name}"></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
