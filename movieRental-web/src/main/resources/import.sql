@@ -106,6 +106,11 @@ INSERT INTO "film_category" (film_id,category_id) VALUES (7,3);
 INSERT INTO "film_category" (film_id,category_id) VALUES (8,13);
 INSERT INTO "film_category" (film_id,category_id) VALUES (9,13);
 INSERT INTO "film_category" (film_id,category_id) VALUES (10,6);
+INSERT INTO "film_category" (film_id,category_id) VALUES (1,6);
+INSERT INTO "film_category" (film_id,category_id) VALUES (8,2);
+INSERT INTO "film_category" (film_id,category_id) VALUES (9,3);
+INSERT INTO "film_category" (film_id,category_id) VALUES (10,9);
+INSERT INTO "film_category" (film_id,category_id) VALUES (1,4);
 
 --category
 INSERT INTO "categories" (name,updated) VALUES ('Action',CURRENT_TIME);
