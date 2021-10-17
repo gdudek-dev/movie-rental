@@ -6,8 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "categories")
@@ -27,5 +28,5 @@ public class Category extends AbstractTimestamp implements Serializable {
     @JoinTable(name = "film_category",
     joinColumns = @JoinColumn(name = "category_id"),
     inverseJoinColumns = @JoinColumn(name = "film_id"))
-    private Set<Film> films =new HashSet<>();
+    private List<Film> films =new ArrayList<>();
 }
