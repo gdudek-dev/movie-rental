@@ -81,11 +81,7 @@ public class StoreServiceImpl implements StoreService  {
 
     @Override
     @Transactional
-    public void addCustomer(Customer customer, Long storeId) throws NotFoundException {
-
-        if(!storeRepository.findById(storeId).isPresent()) {
-            notFoundException("Store",storeId);
-        }
+    public void addCustomer(Customer customer, Long storeId)  {
 
         Store store = storeRepository.getById(storeId);
         customer.setStore(store);
@@ -94,12 +90,7 @@ public class StoreServiceImpl implements StoreService  {
 
     @Override
     @Transactional
-    public void addStaff(Staff staff, Long storeId) throws NotFoundException {
-
-        if(!storeRepository.findById(storeId).isPresent()) {
-            notFoundException("Store",storeId);
-        }
-
+    public void addStaff(Staff staff, Long storeId) {
         Store store = storeRepository.getById(storeId);
         staff.setStore(store);
         store.getStaff().add(staff);
@@ -107,11 +98,7 @@ public class StoreServiceImpl implements StoreService  {
 
     @Override
     @Transactional
-    public void addManager(Staff manager, Long storeId) throws NotFoundException {
-        if(!storeRepository.findById(storeId).isPresent()) {
-            notFoundException("Store",storeId);
-        }
-
+    public void addManager(Staff manager, Long storeId)  {
         Store store = storeRepository.getById(storeId);
         manager.setStore(store);
         manager.getManagedStores().add(store);
