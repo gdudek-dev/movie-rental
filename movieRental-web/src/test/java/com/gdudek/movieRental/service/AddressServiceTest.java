@@ -1,7 +1,6 @@
 package com.gdudek.movieRental.service;
 
 
-import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.address.City;
@@ -114,7 +113,7 @@ class AddressServiceTest {
     }
 
     @Test
-    void shouldAddAddress() throws AlreadyExistException {
+    void shouldAddAddress()  {
         //given
         when(addressRepository.save(any(Address.class))).thenReturn(address1);
         when(cityRepository.save(any(City.class))).thenReturn(city1);
@@ -125,7 +124,7 @@ class AddressServiceTest {
         assertThat(addedAddress).isEqualTo(address1);
     }
     @Test
-    void shouldAddWhenCountryExistButCityNot() throws AlreadyExistException {
+    void shouldAddWhenCountryExistButCityNot() {
         //given
         when(addressRepository.save(any(Address.class))).thenReturn(address1);
         when(cityRepository.save(any(City.class))).thenReturn(city1);
@@ -138,12 +137,12 @@ class AddressServiceTest {
     }
 
     @Test
-    void shouldAddWhenCountryAndCityExist() throws AlreadyExistException {
+    void shouldAddWhenCountryAndCityExist()  {
         //given
         when(addressRepository.save(any(Address.class))).thenReturn(address1);
         when(cityRepository.existsByName(any(String.class))).thenReturn(true);
         when(countryRepository.existsByName(any(String.class))).thenReturn(true);
-        when(cityRepository.findCityByName(any(String.class))).thenReturn(Optional.of(city1));
+        when(cityRepository.findCityByNameAndCountry_Name(any(String.class),any(String.class))).thenReturn(Optional.of(city1));
         //when
         Address addedAddress = addressService.save(address1);
         //then
