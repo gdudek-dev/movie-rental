@@ -4,6 +4,7 @@ import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.customer.Customer;
+import com.gdudek.movieRental.repository.address.AddressRepository;
 import com.gdudek.movieRental.repository.customer.CustomerRepository;
 import com.gdudek.movieRental.service.address.impl.AddressServiceImpl;
 import com.gdudek.movieRental.service.customer.CustomerService;
@@ -18,6 +19,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
    private final CustomerRepository customerRepository;
+   private final AddressRepository addressRepository;
    private final AddressServiceImpl addressService;
 
     @Override
@@ -44,6 +46,19 @@ public class CustomerServiceImpl implements CustomerService {
         if(customerRepository.existsByEmail(customer.getEmail())){
 
             throw new AlreadyExistException("Customer with email "+ customer.getEmail()+" already exist");
+        }
+
+        if(addressRepository.existsByMainAddressAndCity_NameAndCity_Country_Name(customerAddress.getMainAddress()
+                ,customerAddress.getCity().getName()
+                ,customerAddress.getCity().getCountry().getName())){
+            customerAddress= addressRepository.findAddressByMainAddressAndCity_NameAndCity_Country_Name(customerAddress.getMainAddress()
+                    ,customerAddress.getCity().getName()
+                    ,customerAddress.getCity().getCountry().getName()).get();
+            customerAddress.getCustomers().add(customer);
+
+            addressRepository.save(customerAddress);
+            customer.setAddress(customerAddress);
+            return customerRepository.save(customer);
         }
 
         customerAddress.getCustomers().add(customer);

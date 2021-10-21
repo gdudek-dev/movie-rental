@@ -43,16 +43,14 @@ public class AddressServiceImpl implements AddressService  {
        City city = address.getCity();
        Country country = city.getCountry();
 
-        if(!countryRepository.existsByName(country.getName()))
-        {
+        if(!countryRepository.existsByName(country.getName())) {
             country.getCities().add(city);
             countryRepository.save(country);
             city.getAddresses().add(address);
             cityRepository.save(city);
             return addressRepository.save(address);
         }
-        if(!cityRepository.existsByName(city.getName()))
-        {
+        if(!cityRepository.existsByName(city.getName())) {
             countryRepository.findCountryByName(country.getName()).get().getCities().add(city);
             city.getAddresses().add(address);
             city.setCountry(countryRepository.findCountryByName(country.getName()).orElseThrow());
@@ -60,8 +58,8 @@ public class AddressServiceImpl implements AddressService  {
             return addressRepository.save(address);
         }
 
-        cityRepository.findCityByName(city.getName()).get().getAddresses().add(address);
-        address.setCity(cityRepository.findCityByName(city.getName()).orElseThrow());
+        cityRepository.findCityByNameAndCountry_Name(city.getName(),city.getCountry().getName()).get().getAddresses().add(address);
+        address.setCity(cityRepository.findCityByNameAndCountry_Name(city.getName(),city.getCountry().getName()).orElseThrow());
         return addressRepository.save(address);
     }
 

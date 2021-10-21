@@ -13,5 +13,8 @@ public interface AddressRepository extends JpaRepository<Address,Long> {
 
     Optional<List<Address>> findAllByCity_Name(String name);
 
-    boolean existsByMainAddressAndPostalCode(String mainAddress, String postalCode);
+    Optional<Address>findAddressByMainAddressAndCity_NameAndCity_Country_Name(String mainAddress,String cityName,String countryName);
+
+
+    boolean existsByMainAddressAndCity_NameAndCity_Country_Name(String mainAddress,String cityName,String countryName);
 }
