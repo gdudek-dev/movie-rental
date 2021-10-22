@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-middle">
                     <label for="email">Email</label>
-                    <input th:field="*{email}" type="email" placeholder="Enter Email" name="email" id="email" required>
+                    <input th:field="*{email}" type="email" th:placeholder="${emailExist}?:'Enter Email'" name="email" id="email" required>
                     <label for="address">Address</label>
                     <input th:field="*{address.mainAddress}" type="text" placeholder="Enter Address" name="address" id="address" required>
                     <label for="postalCode">Postal Code</label>
@@ -46,8 +46,8 @@
         </div>
         <div class="column-right">
             <div class="inputs">
-                <label for="username">Username</label>
-                <input th:field="*{username}" type="text" placeholder="Enter Username" name="username" id="username" required>
+                <label  for="username">Username</label>
+                <input th:field="*{username}" type="text" th:placeholder="${usernameExist}?:'Enter Username'"  name="username" id="username" required>
                 <label for="password">Password</label>
                 <input th:field="*{password}" type="password" placeholder="Enter Password" name="password" id="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{5,}" required>
                 <label for="password-conf">Confirm Password</label>

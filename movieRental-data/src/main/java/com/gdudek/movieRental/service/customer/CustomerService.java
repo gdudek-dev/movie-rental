@@ -8,4 +8,7 @@ public interface CustomerService extends BasicService {
 
     Customer findCustomerByUsername(String username) throws NotFoundException;
 
+    boolean existByUsername(String username);
+    boolean existByEmail(String email);
+
 }

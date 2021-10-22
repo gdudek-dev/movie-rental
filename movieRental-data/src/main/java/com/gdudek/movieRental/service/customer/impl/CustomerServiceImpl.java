@@ -1,6 +1,5 @@
 package com.gdudek.movieRental.service.customer.impl;
 
-import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.customer.Customer;
@@ -34,19 +33,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public Customer save(Object customerToSave) throws AlreadyExistException {
+    public Customer save(Object customerToSave) {
         Customer customer = (Customer) customerToSave;
         Address customerAddress = customer.getAddress();
-
-        if(customerRepository.existsByUsername(customer.getUsername())){
-
-            throw new AlreadyExistException("Customer with username "+ customer.getUsername()+" already exist");
-        }
-
-        if(customerRepository.existsByEmail(customer.getEmail())){
-
-            throw new AlreadyExistException("Customer with email "+ customer.getEmail()+" already exist");
-        }
 
         if(addressRepository.existsByMainAddressAndCity_NameAndCity_Country_Name(customerAddress.getMainAddress()
                 ,customerAddress.getCity().getName()
@@ -88,4 +77,16 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findCustomerByUsername(String username) throws NotFoundException {
         return customerRepository.findCustomerByUsername(username).orElseThrow(()->new NotFoundException("Customer with username "+username+" not found"));
     }
+
+    @Override
+    public boolean existByUsername(String username) {
+        return customerRepository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existByEmail(String email) {
+        return customerRepository.existsByEmail(email);
+    }
+
+
 }

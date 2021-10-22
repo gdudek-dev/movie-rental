@@ -1,17 +1,13 @@
 package com.gdudek.movieRental.controller;
 
-import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.model.customer.Customer;
 import com.gdudek.movieRental.service.business.impl.StoreServiceImpl;
 import com.gdudek.movieRental.service.customer.impl.CustomerServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class RegisterViewController {
@@ -30,21 +26,32 @@ public class RegisterViewController {
 
         model.addAttribute("stores",storeService.findAll());
         model.addAttribute("customer",new Customer());
+        model.addAttribute("emailExist",null);
+        model.addAttribute("usernameExist",null);
         return "views/register";
     }
 
     @PostMapping({"/register","register.html"})
-    public ModelAndView submit(@RequestParam( value = "selectedStore")Long storeId, Customer customer, BindingResult bindingResult) throws AlreadyExistException {
+    public String submit(Model model,@RequestParam( value = "selectedStore")Long storeId, Customer customer) {
 
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView();
+        if(customerService.existByUsername(customer.getUsername())){
+            model.addAttribute("usernameExist","Username already exist");
+            customer.setUsername(null);
+            model.addAttribute("stores",storeService.findAll());
+            model.addAttribute("customer",customer);
+            return "views/register";
         }
+        if(customerService.existByEmail(customer.getEmail())){
+            model.addAttribute("emailExist","Email already exist");
+            customer.setEmail(null);
+            model.addAttribute("stores",storeService.findAll());
+            model.addAttribute("customer",customer);
+            return "views/register";
+        }
+
         customerService.save(customer);
         storeService.addCustomer(customer,storeId);
 
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/index");
-
-        return new ModelAndView(redirectView);
+        return "views/login";
     }
 }
