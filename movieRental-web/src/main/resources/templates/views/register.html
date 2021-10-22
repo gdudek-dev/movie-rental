@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="" th:href="@{/css/register.css}">
+    <title>Register</title>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{index}">
+        <img src="" th:src="@{/images/logo/logo.png}" alt="" class="logo">
+    </a>
+</div>
+
+<form th:action="@{/register}" th:object="${customer}" method="post" onsubmit ="return verifyPassword()">
+    <div class="grid-container">
+        <div class="column-left">
+            <div class="row">
+                <div class="col-left">
+                    <label for="firstName">First Name</label>
+                    <input th:field="*{firstName}" type="text" placeholder="Enter First Name" name="firstName" id="firstName" required>
+                    <label for="lastName">Last Name</label>
+                    <input th:field="*{lastName}" type="text" placeholder="Enter Last Name" name="lastName" id="lastName" required>
+                    <label for="phone">Phone Number</label>
+                    <input th:field="*{address.phone}" type="tel" placeholder="Enter Phone Number" name="phone" id="phone" pattern="[0-9]{9}"  required>
+                </div>
+                <div class="col-middle">
+                    <label for="email">Email</label>
+                    <input th:field="*{email}" type="email" placeholder="Enter Email" name="email" id="email" required>
+                    <label for="address">Address</label>
+                    <input th:field="*{address.mainAddress}" type="text" placeholder="Enter Address" name="address" id="address" required>
+                    <label for="postalCode">Postal Code</label>
+                    <input th:field="*{address.postalCode}" type="text" placeholder="Enter Postal Code" name="postalCode" id="postalCode" pattern="^[0-9]{2}-[0-9]{3}$" title="xx-xxx">
+                </div>
+                <div class="col-right">
+                    <label for="city">City</label>
+                    <input th:field="*{address.city.name}" type="text" placeholder="Enter City" name="city" id="city" required>
+                    <label for="country">Country</label>
+                    <input th:field="*{address.city.country.name}" type="text" placeholder="Enter Country" name="country" id="country" required>
+                    <label for="store">Select Store</label>
+                    <select th:name="selectedStore"  name="store" id="store">
+                        <option th:each="store: ${stores}" th:value="${store.id}" th:text="${store.address.mainAddress}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="column-right">
+            <div class="inputs">
+                <label for="username">Username</label>
+                <input th:field="*{username}" type="text" placeholder="Enter Username" name="username" id="username" required>
+                <label for="password">Password</label>
+                <input th:field="*{password}" type="password" placeholder="Enter Password" name="password" id="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{5,}" required>
+                <label for="password-conf">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" name="password-conf" id="password-conf"  required>
+                <input class="submit-input" type="submit" value="Register">
+            </div>
+            <div class="messages">
+                <h1>Password must contain the following:</h1>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>uppercase</b> letter</p>
+                <p id="length" class="invalid">Minimum <b>5 characters</b></p>
+                <p id="match" class="invalid">Passwords <b>must be the same</b></p>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    var myPassword = document.getElementById("password");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var length = document.getElementById("length");
+    var match = document.getElementById("match");
+    var passwordConf = document.getElementById("password-conf");
+
+    myPassword.onkeyup = function() {
+
+        var lowerCaseLetters = /[a-z]/g;
+        if(myPassword.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid")
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid")
+            letter.classList.add("invalid")
+        }
+
+        var upperCaseLetters = /[A-Z]/g;
+        if(myPassword.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        if(myPassword.value.length >= 5) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+        if (myPassword.value == passwordConf.value) {
+            match.classList.remove("invalid");
+            match.classList.add("valid");
+        } else {
+            match.classList.remove("valid");
+            match.classList.add("invalid");
+        }
+    }
+
+    passwordConf.onkeyup = function(){
+        if (myPassword.value == passwordConf.value) {
+            match.classList.remove("invalid");
+            match.classList.add("valid");
+        } else {
+            match.classList.remove("valid");
+            match.classList.add("invalid");
+        }
+    }
+    function verifyPassword() {
+        if(myPassword.value != passwordConf.value) {
+            return false;
+        }  else{
+            return true;
+        }
+    }
+</script>
+
+</body>
+</html>

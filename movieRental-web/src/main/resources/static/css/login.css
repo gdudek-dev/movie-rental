@@ -1,0 +1,93 @@
+@charset "UTF-8";
+body {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  background-repeat: repeat;
+  font-family: 'Times New Roman';
+  background-size: 1920px 800px;
+  min-width: 1200px;
+}
+
+.navbar a .logo {
+  width: 5em;
+  height: 4em;
+  padding-left: 5em;
+}
+
+p {
+  color: white;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 5em;
+}
+
+.row .column-left {
+  width: 50%;
+  margin-left: 2em;
+  border-right: 4px solid white;
+}
+
+.row .column-left .login-form {
+  text-align: center;
+}
+
+.row .column-left .login-form p {
+  font-weight: bold;
+  font-size: 4em;
+  text-align: center;
+}
+
+.row .column-left .login-form .text-input {
+  border: 0;
+  margin-bottom: 1em;
+  outline: 0;
+  color: white;
+  font-size: 2em;
+  background-color: transparent;
+  border-bottom: 2px solid white;
+}
+
+.row .column-left .login-form .submit-input {
+  width: 8em;
+  border-radius: .5em;
+  font-size: 3em;
+  background-color: white;
+  border: 0em;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+.row .column-left .login-form .submit-input:hover {
+  background-color: black;
+  color: white;
+}
+
+.row .column-right {
+  text-align: center;
+}
+
+.row .column-right p {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.row .column-right input {
+  width: 8em;
+  border-radius: .5em;
+  font-size: 3em;
+  background-color: white;
+  border: 0em;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+.row .column-right input:hover {
+  background-color: black;
+  color: white;
+}
