@@ -1,6 +1,7 @@
 package com.gdudek.movieRental.model.address;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.utils.ConvertStringToCaseSensitive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,4 +26,8 @@ public class Country extends AbstractTimestamp implements Serializable {
 
     @OneToMany(mappedBy = "country")
     private Set<City> cities = new HashSet<>();
+
+    public void setName(String name) {
+        this.name = ConvertStringToCaseSensitive.getConvertedString(name);
+    }
 }

@@ -1,6 +1,7 @@
 package com.gdudek.movieRental.model.address;
 
 import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.utils.ConvertStringToCaseSensitive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,8 @@ public class City extends AbstractTimestamp implements Serializable {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    public void setName(String name) {
+        this.name = ConvertStringToCaseSensitive.getConvertedString(name);
+    }
 }
