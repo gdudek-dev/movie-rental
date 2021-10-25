@@ -1,6 +1,5 @@
 package com.gdudek.movieRental.service.business.impl;
 
-import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Staff;
@@ -23,10 +22,11 @@ public class StaffServiceImpl implements StaffService  {
 
     PasswordEncoder passwordEncoder;
 
-    public StaffServiceImpl(StaffRepository staffRepository, AddressRepository addressRepository, AddressServiceImpl addressService) {
+    public StaffServiceImpl(StaffRepository staffRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
         this.staffRepository = staffRepository;
         this.addressRepository = addressRepository;
         this.addressService = addressService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class StaffServiceImpl implements StaffService  {
 
     @Override
     @Transactional
-    public Staff save(Object objectToSave) throws AlreadyExistException {
+    public Staff save(Object objectToSave){
         Staff staff = (Staff) objectToSave;
         encodePassword(staff);
         Address staffAddress = staff.getAddress();
@@ -97,5 +97,15 @@ public class StaffServiceImpl implements StaffService  {
         return staffRepository.findStaffByUsername(username)
                 .orElseThrow(()->new NotFoundException("Staff with username "+username+ " not found"));
 
+    }
+
+    @Override
+    public boolean existByUsername(String username) {
+        return staffRepository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existByEmail(String email) {
+        return staffRepository.existsByEmail(email);
     }
 }

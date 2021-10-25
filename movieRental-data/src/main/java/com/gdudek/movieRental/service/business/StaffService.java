@@ -7,4 +7,6 @@ import com.gdudek.movieRental.service.BasicService;
 public interface StaffService extends BasicService {
 
     Staff findStaffByUsername(String username) throws NotFoundException;
+    boolean existByUsername(String username);
+    boolean existByEmail(String email);
 }
