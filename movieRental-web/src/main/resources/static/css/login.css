@@ -41,6 +41,10 @@ p {
   text-align: center;
 }
 
+.row .column-left .login-form .alert-error {
+  color: red;
+}
+
 .row .column-left .login-form .text-input {
   border: 0;
   margin-bottom: 1em;

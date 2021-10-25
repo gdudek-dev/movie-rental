@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta sec:authorize="isAuthenticated()" http-equiv="refresh"  content="0; url=/index" />
     <link rel="stylesheet" href="" th:href="@{/css/login.css}">
     <title>Login</title>
 </head>
@@ -17,6 +18,9 @@
         <div class="login-form">
             <p>Login</p>
             <form action="#" method="post" th:action="@{/login}">
+                <div th:if="${param.error}" class="alert-error">
+                    Invalid username or password
+                </div>
                 <input class="text-input" placeholder="Username" type="text" name="username" required>
                 <input class="text-input" placeholder="Password" type="password" id="password" name="password" required>
                 <input class="submit-input" type="submit" value="Login">
