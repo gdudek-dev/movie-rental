@@ -7,19 +7,27 @@ import com.gdudek.movieRental.repository.address.AddressRepository;
 import com.gdudek.movieRental.repository.customer.CustomerRepository;
 import com.gdudek.movieRental.service.address.impl.AddressServiceImpl;
 import com.gdudek.movieRental.service.customer.CustomerService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
    private final CustomerRepository customerRepository;
    private final AddressRepository addressRepository;
    private final AddressServiceImpl addressService;
+
+   PasswordEncoder passwordEncoder;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
+        this.customerRepository = customerRepository;
+        this.addressRepository = addressRepository;
+        this.addressService = addressService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public List<Customer> findAll() {
@@ -35,6 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     public Customer save(Object customerToSave) {
         Customer customer = (Customer) customerToSave;
+        encodePassword(customer);
         Address customerAddress = customer.getAddress();
 
         if(addressRepository.existsByMainAddressAndCity_NameAndCity_Country_Name(customerAddress.getMainAddress()
@@ -53,6 +62,11 @@ public class CustomerServiceImpl implements CustomerService {
         customerAddress.getCustomers().add(customer);
         addressService.save(customerAddress);
         return customerRepository.save(customer);
+    }
+
+    private void encodePassword(Customer customer)
+    {
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
     }
 
     @Override

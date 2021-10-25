@@ -4,21 +4,30 @@ import com.gdudek.movieRental.exception.AlreadyExistException;
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Staff;
+import com.gdudek.movieRental.repository.address.AddressRepository;
 import com.gdudek.movieRental.repository.business.StaffRepository;
 import com.gdudek.movieRental.service.address.impl.AddressServiceImpl;
 import com.gdudek.movieRental.service.business.StaffService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StaffServiceImpl implements StaffService  {
 
     private final StaffRepository staffRepository;
+    private final AddressRepository addressRepository;
     private final AddressServiceImpl addressService;
+
+    PasswordEncoder passwordEncoder;
+
+    public StaffServiceImpl(StaffRepository staffRepository, AddressRepository addressRepository, AddressServiceImpl addressService) {
+        this.staffRepository = staffRepository;
+        this.addressRepository = addressRepository;
+        this.addressService = addressService;
+    }
 
     @Override
     public List<Staff> findAll() {
@@ -34,22 +43,32 @@ public class StaffServiceImpl implements StaffService  {
     @Override
     @Transactional
     public Staff save(Object objectToSave) throws AlreadyExistException {
-        Staff staff = (Staff)objectToSave;
-        Address address = staff.getAddress();
+        Staff staff = (Staff) objectToSave;
+        encodePassword(staff);
+        Address staffAddress = staff.getAddress();
 
-        if(staffRepository.existsByUsername(staff.getUsername())){
+        if (addressRepository.existsByMainAddressAndCity_NameAndCity_Country_Name(staffAddress.getMainAddress()
+                , staffAddress.getCity().getName()
+                , staffAddress.getCity().getCountry().getName())) {
+            staffAddress = addressRepository.findAddressByMainAddressAndCity_NameAndCity_Country_Name(staffAddress.getMainAddress()
+                    , staffAddress.getCity().getName()
+                    , staffAddress.getCity().getCountry().getName()).get();
+            staffAddress.getStaff().add(staff);
 
-            throw new AlreadyExistException("Staff with username "+ staff.getUsername()+" already exist");
+            addressRepository.save(staffAddress);
+            staff.setAddress(staffAddress);
+            return staffRepository.save(staff);
+
         }
 
-        if(staffRepository.existsByEmail(staff.getEmail())){
-
-            throw new AlreadyExistException("Customer with email "+ staff.getEmail()+" already exist");
-        }
-
-        address.getStaff().add(staff);
-        addressService.save(address);
+        staffAddress.getStaff().add(staff);
+        addressService.save(staffAddress);
         return staffRepository.save(staff);
+    }
+
+    private void encodePassword(Staff staff)
+    {
+        staff.setPassword(passwordEncoder.encode(staff.getPassword()));
     }
 
     @Override
