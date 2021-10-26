@@ -1,6 +1,6 @@
 package com.gdudek.movieRental.model.business;
 
-import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.AbstractUser;
 import com.gdudek.movieRental.model.address.Address;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name = "staff")
 @Getter
 @Setter
-public class Staff extends AbstractTimestamp implements Serializable {
+public class Staff extends AbstractUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +31,7 @@ public class Staff extends AbstractTimestamp implements Serializable {
     @Column(name = "email")
     String email;
 
-    @Column(name = "username",unique = true)
-    private String username;
 
-    @Column(name = "password")
-    private String password;
 
     @ManyToOne
     @JoinColumn(name = "store_id")

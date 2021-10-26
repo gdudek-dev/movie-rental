@@ -1,6 +1,6 @@
 package com.gdudek.movieRental.model.customer;
 
-import com.gdudek.movieRental.model.AbstractTimestamp;
+import com.gdudek.movieRental.model.AbstractUser;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Payment;
 import com.gdudek.movieRental.model.business.Rental;
@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name="customers")
 @Getter
 @Setter
-public class Customer extends AbstractTimestamp implements Serializable {
+public class Customer extends AbstractUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +41,6 @@ public class Customer extends AbstractTimestamp implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Column(name="username",unique = true)
-    private String username;
-
-    @Column(name="password")
-    private String password;
-
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
@@ -61,7 +55,7 @@ public class Customer extends AbstractTimestamp implements Serializable {
     @Override
     protected void onCreate() {
         super.onCreate();
-        created=LocalDateTime.now();
+        created= LocalDateTime.now();
     }
 
 }
