@@ -55,6 +55,21 @@ p {
   border-bottom: 2px solid white;
 }
 
+.row .column-left .login-form .user-type {
+  border: 0;
+  margin-bottom: 1em;
+  width: 50%;
+  outline: 0;
+  color: white;
+  font-size: 2em;
+  background-color: transparent;
+  border-bottom: 2px solid white;
+}
+
+.row .column-left .login-form .user-type option{
+  color: black;
+}
+
 .row .column-left .login-form .submit-input {
   width: 8em;
   border-radius: .5em;

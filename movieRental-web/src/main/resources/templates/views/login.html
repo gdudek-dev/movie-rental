@@ -23,6 +23,10 @@
                 </div>
                 <input class="text-input" placeholder="Username" type="text" name="username" required>
                 <input class="text-input" placeholder="Password" type="password" id="password" name="password" required>
+                <select class="user-type" name="userType" id="types" >
+                    <option  th:value="'Customer'" th:text="Customer     "></option>
+                    <option  th:value="'Staff'" th:text="Staff     "></option>
+                </select>
                 <input class="submit-input" type="submit" value="Login">
             </form>
         </div>
