@@ -2,9 +2,11 @@ package com.gdudek.movieRental.security;
 
 import com.gdudek.movieRental.exception.NotFoundException;
 import com.gdudek.movieRental.model.AbstractUser;
+import com.gdudek.movieRental.model.Role;
 import com.gdudek.movieRental.repository.business.StaffRepository;
 import com.gdudek.movieRental.repository.customer.CustomerRepository;
 import lombok.SneakyThrows;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,9 +16,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private static String USER_TYPE = "userType";
@@ -37,7 +43,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(StringUtils.isEmpty(userType)) {
             return null;
         }
-
         AbstractUser user;
 
         switch (userType){
@@ -48,10 +53,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             default: user = null;
         }
 
+        Collection<Role>roles = user.getRoles();
+        Hibernate.initialize(roles);
+
         return new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return AuthorityUtils.createAuthorityList("user");
+                List<String> roleList = new ArrayList<>();
+                roles.stream().forEach(role -> roleList.add(role.getRoleType().name()));
+                return AuthorityUtils.createAuthorityList(roleList.toArray(new String[0]));
             }
 
             @Override
