@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.util.Collection;
 
 @MappedSuperclass
 @Getter
@@ -24,4 +25,7 @@ public class AbstractUser extends AbstractTimestamp {
 
     }
 
+    public Collection<Role> getRoles(){
+        return null;
+    }
 }

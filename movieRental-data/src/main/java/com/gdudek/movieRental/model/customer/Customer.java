@@ -1,6 +1,7 @@
 package com.gdudek.movieRental.model.customer;
 
 import com.gdudek.movieRental.model.AbstractUser;
+import com.gdudek.movieRental.model.Role;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Payment;
 import com.gdudek.movieRental.model.business.Rental;
@@ -11,6 +12,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +40,16 @@ public class Customer extends AbstractUser implements Serializable {
     @Column(name = "created")
     private LocalDateTime created;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "customer_roles",
+            joinColumns = @JoinColumn(
+                    name = "customer_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
@@ -56,6 +69,11 @@ public class Customer extends AbstractUser implements Serializable {
     protected void onCreate() {
         super.onCreate();
         created= LocalDateTime.now();
+    }
+
+    @Override
+    public Collection<Role> getRoles(){
+        return roles;
     }
 
 }

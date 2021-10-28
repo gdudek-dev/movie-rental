@@ -1,8 +1,11 @@
 package com.gdudek.movieRental.service.customer.impl;
 
+import com.gdudek.movieRental.enums.RoleType;
 import com.gdudek.movieRental.exception.NotFoundException;
+import com.gdudek.movieRental.model.Role;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.customer.Customer;
+import com.gdudek.movieRental.repository.RoleRepository;
 import com.gdudek.movieRental.repository.address.AddressRepository;
 import com.gdudek.movieRental.repository.customer.CustomerRepository;
 import com.gdudek.movieRental.service.address.impl.AddressServiceImpl;
@@ -17,13 +20,16 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
    private final CustomerRepository customerRepository;
+   private final RoleRepository roleRepository;
    private final AddressRepository addressRepository;
    private final AddressServiceImpl addressService;
 
+
    PasswordEncoder passwordEncoder;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, RoleRepository roleRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
+        this.roleRepository = roleRepository;
         this.addressRepository = addressRepository;
         this.addressService = addressService;
         this.passwordEncoder = passwordEncoder;
@@ -43,6 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     public Customer save(Object customerToSave) {
         Customer customer = (Customer) customerToSave;
+        addRole(customer);
         encodePassword(customer);
         Address customerAddress = customer.getAddress();
 
@@ -64,8 +71,14 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(customer);
     }
 
-    private void encodePassword(Customer customer)
-    {
+    private void addRole(Customer customer){
+        Role customerRole = roleRepository.findByRoleType(RoleType.ROLE_USER);
+        customer.getRoles().add(customerRole);
+        customerRole.getCustomers().add(customer);
+        roleRepository.save(customerRole);
+    }
+
+    private void encodePassword(Customer customer){
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
     }
 

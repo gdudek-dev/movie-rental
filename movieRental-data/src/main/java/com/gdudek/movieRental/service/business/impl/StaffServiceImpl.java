@@ -1,8 +1,11 @@
 package com.gdudek.movieRental.service.business.impl;
 
+import com.gdudek.movieRental.enums.RoleType;
 import com.gdudek.movieRental.exception.NotFoundException;
+import com.gdudek.movieRental.model.Role;
 import com.gdudek.movieRental.model.address.Address;
 import com.gdudek.movieRental.model.business.Staff;
+import com.gdudek.movieRental.repository.RoleRepository;
 import com.gdudek.movieRental.repository.address.AddressRepository;
 import com.gdudek.movieRental.repository.business.StaffRepository;
 import com.gdudek.movieRental.service.address.impl.AddressServiceImpl;
@@ -17,13 +20,15 @@ import java.util.List;
 public class StaffServiceImpl implements StaffService  {
 
     private final StaffRepository staffRepository;
+    private final RoleRepository roleRepository;
     private final AddressRepository addressRepository;
     private final AddressServiceImpl addressService;
 
     PasswordEncoder passwordEncoder;
 
-    public StaffServiceImpl(StaffRepository staffRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
+    public StaffServiceImpl(StaffRepository staffRepository, RoleRepository roleRepository, AddressRepository addressRepository, AddressServiceImpl addressService, PasswordEncoder passwordEncoder) {
         this.staffRepository = staffRepository;
+        this.roleRepository = roleRepository;
         this.addressRepository = addressRepository;
         this.addressService = addressService;
         this.passwordEncoder = passwordEncoder;
@@ -44,6 +49,7 @@ public class StaffServiceImpl implements StaffService  {
     @Transactional
     public Staff save(Object objectToSave){
         Staff staff = (Staff) objectToSave;
+        addRole(staff);
         encodePassword(staff);
         Address staffAddress = staff.getAddress();
 
@@ -69,6 +75,13 @@ public class StaffServiceImpl implements StaffService  {
     private void encodePassword(Staff staff)
     {
         staff.setPassword(passwordEncoder.encode(staff.getPassword()));
+    }
+
+    private void addRole(Staff staff){
+        Role staffRole = roleRepository.findByRoleType(RoleType.ROLE_USER);
+        staff.getRoles().add(staffRole);
+        staffRole.getStaff().add(staff);
+        roleRepository.save(staffRole);
     }
 
     @Override
