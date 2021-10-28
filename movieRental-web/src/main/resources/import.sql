@@ -57,6 +57,36 @@ INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,pas
 INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,password,updated) VALUES ('Tanek','Huff','dui.lectus.rutrum@massarutrummagna.co.uk',13,3,'urna,','Nulla',CURRENT_TIME);
 INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,password,updated) VALUES ('Peter','Kemp','risus.Donec@egestasFuscealiquet.net',12,1,'lacus.','ornare',CURRENT_TIME);
 
+--roles
+INSERT INTO "role" (role_type) VALUES('ROLE_USER')
+INSERT INTO "role" (role_type) VALUES('ROLE_STAFF')
+INSERT INTO "role" (role_type) VALUES('ROLE_ADMIN')
+INSERT INTO "role" (role_type) VALUES('ROLE_MANAGER')
+
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (4,4);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (3,4);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (5,4);
+
+
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (1,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (2,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (3,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (4,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (5,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (6,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (7,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (8,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (9,1);
+INSERT INTO "customer_roles" (customer_id,role_id) VALUES (10,1);
+
+
+
 --store
 INSERT INTO "stores" (manager_id,address_id,updated) VALUES (4,11,CURRENT_TIME);
 INSERT INTO "stores" (manager_id,address_id,updated) VALUES (3,8,CURRENT_TIME );
