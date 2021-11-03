@@ -1,7 +1,8 @@
 ## General info
-Project in which I learn Spring Boot using MVC pattern.   
-Models are based on "sakila" database.  
-Views are created with HTML5, CSS and Thymeleaf.
+Project in which I learn Spring Boot.  
+* Spring MVC is used as design pattern.  
+* Models are based on "sakila" database.  
+* Views are created with HTML5, CSS and Thymeleaf.
 
 
 ## Technologies
