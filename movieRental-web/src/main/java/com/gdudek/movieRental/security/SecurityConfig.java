@@ -3,7 +3,6 @@ package com.gdudek.movieRental.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,10 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@Order(1)
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-
 
     @Bean
     @Autowired
@@ -42,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/index").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/registerStaff").hasAnyRole("ADMIN","MANAGER")
                 .antMatchers("/locations").permitAll()
                 .antMatchers("/browse/movies").permitAll()
                 .antMatchers("/browse/movies/*").permitAll()
@@ -49,14 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/index")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/index")
                 .permitAll();
 
         httpSecurity.addFilterBefore(new CustomUsernameAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-
     }
 
     @Bean

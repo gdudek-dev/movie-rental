@@ -16,21 +16,25 @@
             </nav>
         </div>
       </div>
-      <section class="hero">
+    <div class="row">
+        <div class="left-col">
             <div class="main-text">
                 Rent your favourite movie
             </div>
-              <div class="login" >
-                  <a sec:authorize="!isAuthenticated()" th:href="@{login}">
-                      <button class="login-btn">Login</button>
-                  </a>
-              </div>
-              <div sec:authorize="isAuthenticated()" class="login" >
-                  <form th:action="@{/logout}" method="post">
-                          <input type="submit" value="Logout" class="login-btn" />
-                  </form>
-              </div>
+            <div class="login" >
+                <a sec:authorize="!isAuthenticated()" th:href="@{login}">
+                    <button class="login-btn">Login</button>
+                </a>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="login" >
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" class="login-btn" />
+                </form>
+            </div>
+        </div>
+        <div class="right-col">
 
-      </section>
+        </div>
+    </div>
 </body>
 </html>

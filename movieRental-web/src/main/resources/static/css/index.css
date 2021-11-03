@@ -39,7 +39,7 @@ body {
   cursor: pointer;
 }
 
-section.hero .main-text {
+.row .left-col .main-text {
   width: 7em;
   font-weight: bold;
   text-transform: uppercase;
@@ -49,12 +49,12 @@ section.hero .main-text {
   padding-left: 1.9em;
 }
 
-section.hero .login {
+.row .left-col .login {
   padding-left: 8em;
   padding-top: 1em;
 }
 
-section.hero .login .login-btn {
+.row .left-col .login .login-btn {
   background-color: white;
   color: black;
   font-weight: bold;
@@ -65,7 +65,7 @@ section.hero .login .login-btn {
   height: 2em;
 }
 
-section.hero .login .login-btn:hover {
+.row .left-col .login .login-btn:hover {
   background-color: black;
   color: white;
 }

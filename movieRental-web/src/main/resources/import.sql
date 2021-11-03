@@ -56,7 +56,7 @@ INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,pas
 INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,password,updated) VALUES ('Cleo','Mccall','Phasellus.dolor.elit@Crassedleo.com',5,1,'facilisi.','Morbi',CURRENT_TIME);
 INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,password,updated) VALUES ('Tanek','Huff','dui.lectus.rutrum@massarutrummagna.co.uk',13,3,'urna,','Nulla',CURRENT_TIME);
 INSERT INTO "staff" (first_name,last_name,email,address_id,store_id,username,password,updated) VALUES ('Peter','Kemp','risus.Donec@egestasFuscealiquet.net',12,1,'lacus.','ornare',CURRENT_TIME);
-
+INSERT INTO "staff" (first_name,last_name,email,username,password,updated) VALUES ('Peter','Admin','admin@admin.com','admin','$2a$10$8JLET3lahpfTtP2zwF4hE.4BuiC7JK9qfIpyOk4srr86nBXjghgi6',CURRENT_TIME);
 --roles
 INSERT INTO "role" (role_type) VALUES('ROLE_USER')
 INSERT INTO "role" (role_type) VALUES('ROLE_STAFF')
@@ -64,14 +64,15 @@ INSERT INTO "role" (role_type) VALUES('ROLE_ADMIN')
 INSERT INTO "role" (role_type) VALUES('ROLE_MANAGER')
 
 INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
-INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
-INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
-INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
-INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
-INSERT INTO "staff_roles" (staff_id,role_id) VALUES (1,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (2,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (3,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (4,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (5,2);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (6,2);
 INSERT INTO "staff_roles" (staff_id,role_id) VALUES (4,4);
 INSERT INTO "staff_roles" (staff_id,role_id) VALUES (3,4);
 INSERT INTO "staff_roles" (staff_id,role_id) VALUES (5,4);
+INSERT INTO "staff_roles" (staff_id,role_id) VALUES (7,3);
 
 
 INSERT INTO "customer_roles" (customer_id,role_id) VALUES (1,1);
@@ -113,6 +114,11 @@ INSERT INTO "inventory" (film_id,store_id,updated) VALUES (8,1,CURRENT_TIME);
 INSERT INTO "inventory" (film_id,store_id,updated) VALUES (4,1,CURRENT_TIME);
 INSERT INTO "inventory" (film_id,store_id,updated) VALUES (3,2,CURRENT_TIME);
 INSERT INTO "inventory" (film_id,store_id,updated) VALUES (10,3,CURRENT_TIME);
+INSERT INTO "inventory" (film_id,store_id,updated) VALUES (4,2,CURRENT_TIME);
+INSERT INTO "inventory" (film_id,store_id,updated) VALUES (4,3,CURRENT_TIME);
+INSERT INTO "inventory" (film_id,store_id,updated) VALUES (5,2,CURRENT_TIME);
+INSERT INTO "inventory" (film_id,store_id,updated) VALUES (5,3,CURRENT_TIME);
+
 
 --film
 INSERT INTO "films" (title,description,release_date,rental_duration,length,replacement_cost,rental_cost,rating,language,updated) VALUES ('Avengers','Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam,','2019-09-20 ',10,79,'60.00','20.00','G','English',CURRENT_TIME);

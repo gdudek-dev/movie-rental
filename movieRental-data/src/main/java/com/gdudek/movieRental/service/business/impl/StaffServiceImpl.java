@@ -49,7 +49,7 @@ public class StaffServiceImpl implements StaffService  {
     @Transactional
     public Staff save(Object objectToSave){
         Staff staff = (Staff) objectToSave;
-        addRole(staff);
+        addRole(staff,RoleType.ROLE_STAFF);
         encodePassword(staff);
         Address staffAddress = staff.getAddress();
 
@@ -77,8 +77,8 @@ public class StaffServiceImpl implements StaffService  {
         staff.setPassword(passwordEncoder.encode(staff.getPassword()));
     }
 
-    private void addRole(Staff staff){
-        Role staffRole = roleRepository.findByRoleType(RoleType.ROLE_USER);
+    private void addRole(Staff staff,RoleType roleType){
+        Role staffRole = roleRepository.findByRoleType(roleType);
         staff.getRoles().add(staffRole);
         staffRole.getStaff().add(staff);
         roleRepository.save(staffRole);
