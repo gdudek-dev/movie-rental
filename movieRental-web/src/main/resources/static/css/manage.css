@@ -1,0 +1,48 @@
+body {
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+    background-repeat: repeat;
+    font-family: 'Times New Roman';
+    background-size: 1920px 800px;
+    min-width: 1200px;
+}
+
+.navbar a .logo {
+    width: 5em;
+    height: 4em;
+    padding-left: 5em;
+}
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    color: white;
+    font-size: 5em;
+}
+
+.buttons {
+    padding-top: 5em;
+    text-align: center;
+}
+
+.buttons button {
+    width: 8em;
+    border-radius: .5em;
+    font-size: 3em;
+    background-color: white;
+    border: 0em;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+.buttons .button-1 {
+    margin-right: 2em;
+}
+
+.buttons button:hover {
+    background-color: black;
+    color: white;
+}

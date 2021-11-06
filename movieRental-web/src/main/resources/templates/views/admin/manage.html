@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  href="" th:href="@{/css/manage.css}">
+    <title>Manage</title>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{../index}">
+        <img src="" th:src="@{/images/logo/logo.png}" alt="Logo" class="logo">
+    </a>
+</div>
+<div class="title">
+    <h1>Admin Panel</h1>
+</div>
+<div class="buttons">
+    <a th:href="@{manage/stores}">
+        <button class="button-1">Manage Stores</button>
+    </a>
+    <a th:href="@{manage/staff}">
+        <button class="button-2">Manage Staff</button>
+    </a>
+</div>
+</body>
+</html>

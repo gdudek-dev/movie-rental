@@ -21,6 +21,11 @@
             <div class="main-text">
                 Rent your favourite movie
             </div>
+            <div class="credentials">
+                Admin password:
+                admin
+                Admin321
+            </div>
             <div class="login" >
                 <a sec:authorize="!isAuthenticated()" th:href="@{login}">
                     <button class="login-btn">Login</button>
@@ -33,7 +38,9 @@
             </div>
         </div>
         <div class="right-col">
-
+            <form sec:authorize="hasRole('ADMIN')" th:action="@{/admin/manage}">
+                <input type="submit" value="Admin Panel" />
+            </form>
         </div>
     </div>
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="" th:href="@{/css/login.css}">
@@ -34,10 +34,6 @@
         <p>Don't have an account?</p>
         <form th:action="@{/register}">
             <input type="submit" value="Register" />
-        </form>
-
-        <form sec:authorize="hasAnyRole('ADMIN','MANAGER')" th:action="@{/registerStaff}">
-            <input type="submit" value="Register Staff" />
         </form>
     </div>
 </div>

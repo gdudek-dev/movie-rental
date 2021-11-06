@@ -39,6 +39,16 @@ body {
   cursor: pointer;
 }
 
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.row .left-col {
+  width: 50%;
+}
+
 .row .left-col .main-text {
   width: 7em;
   font-weight: bold;
@@ -47,6 +57,11 @@ body {
   color: white;
   padding-top: 2em;
   padding-left: 1.9em;
+}
+
+.row .left-col .credentials {
+  color: white;
+  padding-left: 8em;
 }
 
 .row .left-col .login {
@@ -69,3 +84,27 @@ body {
   background-color: black;
   color: white;
 }
+
+.row .right-col {
+  text-align: center;
+  width: 50%;
+  margin-top: 17em;
+}
+
+.row .right-col input {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  font-size: 3em;
+  border-radius: .5em;
+  cursor: pointer;
+  width: 8em;
+  height: 2em;
+}
+
+.row .right-col input:hover {
+  background-color: black;
+  color: white;
+}
+
+
